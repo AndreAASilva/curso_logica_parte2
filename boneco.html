@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <!--TAG para desenhar com as medidas informadas-->
+    <canvas width="600" height="600">
+
+    </canvas>
+
+    <script>
+
+        var tela = document.querySelector("canvas")
+        var pincel = tela.getContext('2d')
+
+        
+
+        pincel.fillStyle = 'lightgrey'
+        pincel.fillRect(0, 0, 600, 600)
+
+        pincel.fillStyle = 'green'
+        pincel.fillRect(100, 100, 400, 400)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(160, 150, 100, 100)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(330, 150, 100, 100)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(260, 250, 70, 120)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(195, 290, 200, 80)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(195, 370, 70, 100)
+
+        pincel.fillStyle = 'black'
+        pincel.fillRect(325, 370, 70, 100)
+       
+
+
+    </script>
+    
+</body>
+</html>
