@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+
+        var tela = document.querySelector('canvas')
+        var pincel = tela.getContext('2d')
+        pincel.fillStyle = 'lightgray'
+        pincel.fillRect(0, 0, 600, 400)
+
+        //Como vou precisar saber as posições de X e Y para quando clicar ter o meu retorno, foram criadas as variáveis xAleatorio e yAleatorio fora das funções para que eu possa utilizar elas de forma global
+        var xAleatorio;
+        var yAleatorio;
+        var raio = 10
+
+        function desenhaCirculo(x, y, raio, cor){
+            pincel.fillStyle = cor;
+            pincel.beginPath();
+            pincel.arc(x, y, raio, 0, 2 * Math.PI);
+            pincel.fill()
+
+        }
+
+        function limpaTela(){
+            pincel.clearRect(0, 0, 600, 400)
+        }
+
+        //As coordenadas devem ser aleatórias pois o alvo vai mexer na tela e por isso informamos os parâmetros na função como X e Y
+        function desenhaAlvo(x, y){
+        desenhaCirculo(x, y, raio+20, 'red')
+        desenhaCirculo(x, y, raio+10, 'white')
+        desenhaCirculo(x, y, raio, 'red')
+        }
+
+
+        function sorteiaPosicao(maximo){
+            //Função com o Math floor para arredondar para baixo e random para gerar uma posição aleatória no bloco entre os eixos X e Y
+            return Math.floor(Math.random() * maximo)
+        }
+
+        function atualizaTela(){
+            
+            limpaTela() //Função criada para limpar os rastros do desenho
+
+            //Variáveis globais para identificar as posições de  X e Y
+            xAleatorio = sorteiaPosicao(600)
+            yAleatorio = sorteiaPosicao(400)
+            desenhaAlvo(xAleatorio, yAleatorio)
+        }
+        
+        setInterval(atualizaTela, 2000)
+
+        function dispara(evento){
+            var x = evento.pageX - tela.offsetLeft
+            var y = evento.pageY - tela.offsetTop
+
+            if((x > xAleatorio - raio) && (x < xAleatorio + raio) && (y > yAleatorio - raio) && (y < yAleatorio + raio)){
+
+                alert('ACERTOU!')
+
+            }
+
+            
+        }
+        
+        tela.onclick = dispara
+    </script>
+    
+</body>
+</html>
